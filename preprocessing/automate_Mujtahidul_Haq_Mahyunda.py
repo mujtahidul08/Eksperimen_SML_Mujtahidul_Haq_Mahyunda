@@ -9,6 +9,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 import saka
+import os
 # Pastikan resource NLTK terunduh saat file ini di-import/dijalankan
 try:
     nltk.data.find('tokenizers/punkt')
@@ -115,9 +116,9 @@ def automate_preprocessing(filepath, test_size=0.2, random_state=0):
 # Script Guard untuk pengujian lokal jika file ini dieksekusi langsung
 # Script Guard untuk pengujian lokal/GitHub Actions
 if __name__ == "__main__":
-    # 1. Sesuaikan dengan nama file dataset mentah Anda sesuai kriteria Advance
-    path_sample = '../mental-health-indo-dataset-text.csv' 
-    print("Menjalankan testing otomatisasi fungsi...")
+    # Mendapatkan jalur absolut folder 'preprocessing' tempat file ini berada
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    # Naik satu tingkat ke root repository untuk menemukan dataset mentah
+    root_dir = os.path.dirname(current_dir)
     
-    # 2. Aktifkan fungsi utama (hilangkan tanda komparasi/comment '#')
-    X_train, X_test, y_train, y_test, vec = automate_preprocessing(path_sample)
+    path_sample = os.path.join(root_dir, 'mental-health-indo-dataset-text.csv')
