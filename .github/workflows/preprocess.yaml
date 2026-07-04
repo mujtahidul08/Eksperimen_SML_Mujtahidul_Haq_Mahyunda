@@ -26,7 +26,7 @@ jobs:
         numpy
         nltk
         Sastrawi
-        saka
+        saka-nlp
         scikit-learn
         EOF
 
